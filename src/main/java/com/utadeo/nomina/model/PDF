@@ -1,0 +1,35 @@
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.FileOutputStream;
+
+public class GeneradorPDF {
+    public static void main(String[] args) {
+        String nombreArchivo = "nomina.pdf";
+        String contenido = "Aquí va el contenido de la nómina..."; // Puedes reemplazar esto con los datos de tu nómina
+        
+        generarPDF(nombreArchivo, contenido);
+    }
+    
+    public static void generarPDF(String nombreArchivo, String contenido) {
+        Document document = new Document();
+        
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream(nombreArchivo));
+            document.open();
+            
+            Paragraph paragraph = new Paragraph(contenido);
+            document.add(paragraph);
+            
+            document.close();
+            
+            System.out.println("Archivo PDF generado exitosamente.");
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

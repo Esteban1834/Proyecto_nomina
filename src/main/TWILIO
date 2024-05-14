@@ -1,0 +1,31 @@
+
+// ESTA PARTE SIGUE EN DESARROLLO YA QUE FALTAN LAS CREDENCIALES
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+
+public class TwilioSMS {
+    
+    public static final String ACCOUNT_SID = "tu_account_sid";
+    public static final String AUTH_TOKEN = "tu_auth_token";
+    
+    
+    public static final String TWILIO_PHONE_NUMBER = "tu_numero_de_telefono_twilio";
+    
+    public static void main(String[] args) {
+        
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        
+        
+        String destinatario = "destinatario";
+        String mensaje = "¡Hola! Este es un mensaje de prueba enviado desde Twilio.";
+        
+        
+        Message message = Message.creator(
+                new PhoneNumber(destinatario), 
+                new PhoneNumber(TWILIO_PHONE_NUMBER), 
+            .create();
+        
+        System.out.println("Mensaje enviado con éxito. SID: " + message.getSid());
+    }
+}
